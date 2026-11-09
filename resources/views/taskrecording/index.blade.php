@@ -9,6 +9,55 @@
         Catat, pantau, dan selesaikan setiap tugas tepat waktu.
     </h4>
 
+        {{-- Summary Cards --}}
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-4">
+
+        {{-- Total Tugas --}}
+        <div class="col">
+            <div class="card bg-dark text-white border-info h-100">
+                <div class="card-body">
+                    <h6 class="text-info">Total Tugas</h6>
+                    <h2 class="fw-bold">{{ $totalTugas }}</h2>
+                    <small class="text-secondary">Seluruh tugas kuliah</small>
+                </div>
+            </div>
+        </div>
+
+        {{-- Belum Selesai --}}
+        <div class="col">
+            <div class="card bg-dark text-white border-danger h-100">
+                <div class="card-body">
+                    <h6 class="text-danger">Belum Selesai</h6>
+                    <h2 class="fw-bold">{{ $belumSelesai }}</h2>
+                    <small class="text-secondary">Tugas belum dikerjakan</small>
+                </div>
+            </div>
+        </div>
+
+        {{-- Proses --}}
+        <div class="col">
+            <div class="card bg-dark text-white border-warning h-100">
+                <div class="card-body">
+                    <h6 class="text-warning">Dalam Proses</h6>
+                    <h2 class="fw-bold">{{ $proses }}</h2>
+                    <small class="text-secondary">Tugas sedang dikerjakan</small>
+                </div>
+            </div>
+        </div>
+
+        {{-- Selesai --}}
+        <div class="col">
+            <div class="card bg-dark text-white border-success h-100">
+                <div class="card-body">
+                    <h6 class="text-success">Selesai</h6>
+                    <h2 class="fw-bold">{{ $selesai }}</h2>
+                    <small class="text-secondary">Tugas telah diselesaikan</small>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <table class="table table-bordered table-dark table-hover">
         <thead class="text-center">
             <tr class="table-dark">
@@ -31,7 +80,23 @@
             <td>{{ $taskrecording->nama_tugas }}</td>
             <td>{{ $taskrecording->mata_kuliah }}</td>
             <td>{{ $taskrecording->deadline }}</td>
-            <td>{{ $taskrecording->status }}</td>
+            <td class="text-center">
+                @if ($taskrecording->status == 'Belum Selesai')
+                    <span class="badge rounded-pill bg-danger">
+                        Belum Selesai
+                    </span>
+
+                @elseif ($taskrecording->status == 'Proses')
+                    <span class="badge rounded-pill bg-warning text-dark">
+                        Proses
+                    </span>
+
+                @else
+                    <span class="badge rounded-pill bg-success">
+                        Selesai
+                    </span>
+                @endif
+            </td>
             <td></td>
             </tr>
             @endforeach

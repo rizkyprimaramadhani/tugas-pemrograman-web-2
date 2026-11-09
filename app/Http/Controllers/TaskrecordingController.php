@@ -12,10 +12,21 @@ class TaskrecordingController extends Controller
      */
     public function index()
     {
+        // Menghitung jumlah tugas
+
+        $totalTugas = Taskrecording::count();
+        $belumSelesai = Taskrecording::where('status', 'Belum Selesai')->count();
+        $proses = Taskrecording::where('status', 'Proses')->count();
+        $selesai = Taskrecording::where('status', 'Selesai')->count();
+
         return view('taskrecording.index', [
             'title' => 'Task Recording',
             'taskrecordings' => Taskrecording::all(),
-            ]);
+            'totalTugas' => $totalTugas,
+            'belumSelesai' => $belumSelesai,
+            'proses' => $proses,
+            'selesai' => $selesai,
+        ]);
 
     }
 
@@ -24,7 +35,7 @@ class TaskrecordingController extends Controller
      */
     public function create()
     {
-      return view('taskrecording.create', ['title' => ' Create Task Recording']);
+      return view('taskrecording.create', ['title' => 'Create Task Recording']);
 
     }
 
