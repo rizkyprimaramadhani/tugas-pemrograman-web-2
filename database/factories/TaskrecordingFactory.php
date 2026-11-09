@@ -19,7 +19,7 @@ class TaskrecordingFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'nim' => fake()->numerify('###########'),
+            'nim' => fake()->numerify('20251105###'),
             'nama_tugas' => fake()->sentence(4),
             'mata_kuliah' => fake()->randomElement([
                 'Pemrograman Web 2',

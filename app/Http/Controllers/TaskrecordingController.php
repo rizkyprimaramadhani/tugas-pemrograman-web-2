@@ -12,7 +12,10 @@ class TaskrecordingController extends Controller
      */
     public function index()
     {
-        return view('taskrecording.index', ['title' => 'Task Recording']);
+        return view('taskrecording.index', [
+            'title' => 'Task Recording',
+            'taskrecordings' => Taskrecording::all(),
+            ]);
 
     }
 

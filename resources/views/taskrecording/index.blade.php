@@ -2,6 +2,10 @@
 
     <x-slot:title>{{ $title }}</x-slot>
  
-    <h1 class="fw-bold">Data Task Recording</h1>
+     {{-- <ul class="list-group">
+        @foreach ($taskrecordings as $taskrecording)
+        <li class="list-group-item">{{ $taskrecording->nim }}</li>
+        @endforeach
+    </ul> --}}
     
 </x-app>
