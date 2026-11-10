@@ -109,7 +109,10 @@
                     </span>
                 @endif
             </td>
-            <td></td>
+            <td>
+                <a class="fw-bold btn btn-info rounded-pill px-4 btn-sm "
+                href="{{ route('taskrecording.edit', $taskrecording) }}" role="button">Edit</a>
+            </td>
             </tr>
             @endforeach
         </tbody>

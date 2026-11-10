@@ -82,7 +82,20 @@ class TaskrecordingController extends Controller
      */
     public function edit(Taskrecording $taskrecording)
     {
-        //
+           // Menghitung jumlah tugas
+        $totalTugas = Taskrecording::count();
+        $belumSelesai = Taskrecording::where('status', 'Belum Selesai')->count();
+        $proses = Taskrecording::where('status', 'Proses')->count();
+        $selesai = Taskrecording::where('status', 'Selesai')->count();
+
+        return view('taskrecording.edit', [
+            'title' => 'Edit Task Recording',
+            'taskrecording' => $taskrecording,
+            'totalTugas' => $totalTugas,
+            'belumSelesai' => $belumSelesai,
+            'proses' => $proses,
+            'selesai' => $selesai,
+        ]);
     }
 
     /**
@@ -90,7 +103,29 @@ class TaskrecordingController extends Controller
      */
     public function update(Request $request, Taskrecording $taskrecording)
     {
-        //
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'nim' => ['required', 'numeric', 'digits:11'],
+            'nama_tugas' => ['required', 'string', 'max:255'],
+            'mata_kuliah' => ['required', 'string', 'max:255'],
+            'deadline' => ['required', 'date'],
+            'status' => ['required', 'in:Belum Selesai,Proses,Selesai'],
+        ], [
+            'name.required' => 'Nama tidak boleh kosong',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter',
+            'nim.required' => 'NIM tidak boleh kosong',
+            'nim.digits' => 'NIM wajib :digits digit',
+            'nim.numeric' => 'NIM wajib angka',
+            'nama_tugas.required' => 'Nama tugas tidak boleh kosong',
+            'mata_kuliah.required' => 'Mata kuliah tidak boleh kosong',
+            'deadline.required' => 'Deadline tidak boleh kosong',
+            'deadline.date' => 'Format deadline tidak valid',
+            'status.required' => 'Status tugas wajib dipilih',
+            'status.in' => 'Status tugas tidak valid',
+        ]);
+
+        $taskrecording->update($validated);
+        return to_route('taskrecording.index')->withSuccess('Data berhasil diubah'); 
     }
 
     /**
