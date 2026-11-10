@@ -20,6 +20,10 @@
     {{-- page title --}}
     <div class="py-5 text-center text-white header-gradient">
         <h1 class="fw-bold">{{ $title }}</h1>
+
+        <p class="mb-0 mt-2">
+          Solusi sederhana untuk mengelola dan memantau tugas kuliahmu.
+        </p>
     </div>
     {{-- Custom CSS --}}
     <style>

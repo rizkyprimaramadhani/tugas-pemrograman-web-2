@@ -2,12 +2,24 @@
 
     <x-slot:title>{{ $title }}</x-slot>
     
-    <h2 class=" fw-bold text-white text-center mb-4">
+    @session('success')
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endsession
+    
+    <h2 class=" fw-bold text-white text-center mb-2">
         Daftar Tugas Kuliah
     </h2>
-    <h4 class="text-white text-center mb-4">
+    <p class="text-white text-center mb-4">
         Catat, pantau, dan selesaikan setiap tugas tepat waktu.
-    </h4>
+    </p>
+    
+        {{-- Tombol Tambah Tugas --}}
+    <div class="d-flex justify-content-end mb-3">
+        <a class="btn btn-danger rounded-pill px-4"
+        href="{{ route('taskrecording.create') }}" role="button">+ Tambah Tugas</a>
+    </div>
 
         {{-- Summary Cards --}}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 mb-4">
