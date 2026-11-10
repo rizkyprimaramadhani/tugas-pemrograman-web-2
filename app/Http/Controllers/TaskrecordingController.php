@@ -21,7 +21,8 @@ class TaskrecordingController extends Controller
 
         return view('taskrecording.index', [
             'title' => 'Task Recording',
-            'taskrecordings' => Taskrecording::all(),
+            'taskrecordings' => Taskrecording::latest()->get(),
+            // 'taskrecordings' => Taskrecording::orderBy('name', 'asc')->get(),
             'totalTugas' => $totalTugas,
             'belumSelesai' => $belumSelesai,
             'proses' => $proses,
@@ -133,6 +134,7 @@ class TaskrecordingController extends Controller
      */
     public function destroy(Taskrecording $taskrecording)
     {
-        //
+        $taskrecording->delete($taskrecording);
+        return to_route('taskrecording.index')->withSuccess('Data berhasil dihapus');
     }
 }

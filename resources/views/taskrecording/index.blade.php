@@ -110,8 +110,19 @@
                 @endif
             </td>
             <td>
-                <a class="fw-bold btn btn-info rounded-pill px-4 btn-sm "
+                <div class="d-flex justify-content-center gap-2">
+                <a class="fw-bold btn btn-info rounded-pill px-2 btn-sm"
                 href="{{ route('taskrecording.edit', $taskrecording) }}" role="button">Edit</a>
+
+                <form action="{{ route('taskrecording.destroy', $taskrecording) }}" method="POST" class="d-inline">
+                    @method('DELETE')
+                    @csrf
+
+                    <button type="submit" class="btn btn-danger rounded-pill px-2 btn-sm" onclick="return confirm('Anda Yakin ?')">
+                        Delete
+                    </button>
+                </form>
+                </div>
             </td>
             </tr>
             @endforeach

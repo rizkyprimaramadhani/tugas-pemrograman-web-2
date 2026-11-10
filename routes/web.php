@@ -10,3 +10,4 @@ Route::get('/taskrecording/create', [TaskrecordingController::class, 'create'])-
 Route::post('/taskrecording/store', [TaskrecordingController::class, 'store'])->name('taskrecording.store');
 Route::get('/taskrecording/{taskrecording}/edit', [TaskrecordingController::class, 'edit'])->name('taskrecording.edit');
 Route::put('/taskrecording/{taskrecording}', [TaskrecordingController::class, 'update'])->name('taskrecording.update');
+Route::delete('/taskrecording/{taskrecording}', [TaskrecordingController::class, 'destroy'])->name('taskrecording.destroy');
